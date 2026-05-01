@@ -13,6 +13,18 @@ body {
   font-family: 'Inter', sans-serif;
   background: #000;
   color: #fff;
+  overflow-x: hidden;
+}
+
+/* Cursor Glow */
+.cursor {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0,150,255,0.15), transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 0;
 }
 
 /* Layout */
@@ -20,76 +32,84 @@ body {
   max-width: 900px;
   margin: auto;
   padding: 40px 20px;
+  position: relative;
+  z-index: 2;
 }
 
-/* Typography */
 h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   text-align: center;
 }
 
 h2 {
-  margin-top: 60px;
-  font-size: 1.8rem;
+  margin-top: 80px;
+  font-size: 2rem;
 }
 
 p {
   color: #bbb;
+  line-height: 1.7;
 }
 
-/* Hero Glow Animation */
+/* Hero */
 .hero {
   text-align: center;
-  position: relative;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(0,150,255,0.3), transparent 70%);
-  top: -120px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: pulse 6s infinite ease-in-out;
-  z-index: -1;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
-  50% { opacity: 0.6; transform: translateX(-50%) scale(1.2); }
 }
 
 /* Cards */
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 20px;
 }
 
 .card {
-  background: #111;
+  background: rgba(255,255,255,0.03);
   padding: 20px;
   border-radius: 12px;
-  transition: transform 0.3s ease, background 0.3s;
-  transform-style: preserve-3d;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
 }
 
 .card:hover {
-  background: #151515;
+  transform: translateY(-5px);
+  background: rgba(255,255,255,0.06);
 }
 
-/* Tilt effect */
-.card:hover {
-  transform: rotateX(5deg) rotateY(5deg) scale(1.02);
+.work-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.work-title svg {
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+}
+  
+/* Loop Diagram */
+.loop {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0;
+}
+
+.loop svg {
+  width: 300px;
+  height: 300px;
+}
+
+.loop text {
+  fill: #aaa;
+  font-size: 12px;
 }
 
 /* Fade animation */
 .fade {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease;
+  transform: translateY(30px);
+  transition: all 1s ease;
 }
 
 .fade.show {
@@ -108,12 +128,25 @@ a:hover {
   border-bottom: 1px solid #fff;
 }
 
+/* Video */
+.video {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+iframe {
+  border-radius: 12px;
+  width: 100%;
+  max-width: 560px;
+  height: 315px;
+}
+
 /* Footer */
 .footer {
   text-align: center;
-  margin-top: 60px;
+  margin-top: 80px;
   color: #666;
-  font-size: 0.9rem;
 }
 
 /* Responsive */
@@ -127,6 +160,8 @@ a:hover {
 
 <body>
 
+<div class="cursor" id="cursor"></div>
+
 <div class="container">
 
 <!-- HERO -->
@@ -137,71 +172,80 @@ a:hover {
   </p>
 </section>
 
+<!-- LOOP DIAGRAM -->
+<div class="loop fade">
+  <svg viewBox="0 0 300 300">
+    <circle cx="150" cy="150" r="100" stroke="#444" fill="none"/>
+    <text x="150" y="40" text-anchor="middle">Human</text>
+    <text x="260" y="150" text-anchor="middle">Signals</text>
+    <text x="150" y="280" text-anchor="middle">Environment</text>
+    <text x="40" y="150" text-anchor="middle">AI</text>
+  </svg>
+</div>
+
 <!-- ABOUT -->
 <section class="fade">
   <h2>About</h2>
   <p>
     I’m Shivam Sharma, an XR and AI researcher based in India. My work explores how immersive environments shape human thinking and behavior.
     <br><br>
-    Through VR simulations, AR learning tools, and accessibility systems, I’ve realized that people don’t struggle with concepts—they struggle when environments don’t adapt to them.
+    Through building VR systems and working on accessibility, I realized something simple: people don’t struggle with concepts—they struggle when environments don’t adapt to them.
     <br><br>
-    I’m now exploring Adaptive Reality: environments that evolve in real time based on how we think, move, and perceive.
+    I’m now exploring Adaptive Reality—systems where environments evolve in real time based on how we think, move, and perceive.
   </p>
 </section>
 
 <!-- WORK -->
-  <section>
-    <h2>Core Work</h2>
+<section class="section fade">
+  <h2>Core Work</h2>
 
-    <div class="grid">
+  <div class="grid">
 
-      <div class="card">
-        <svg class="icon" viewBox="0 0 24 24" fill="white">
+    <div class="card">
+      <div class="work-title">
+        <svg viewBox="0 0 24 24" fill="white">
           <circle cx="12" cy="12" r="10"/>
         </svg>
         <h3>Adaptive Reality</h3>
-        <p>Environments that dynamically adapt to cognition and interaction, creating personalized realities.</p>
       </div>
+      <p>Dynamic environments that respond to cognition and behavior.</p>
+    </div>
 
-      <div class="card">
-        <svg class="icon" viewBox="0 0 24 24" fill="white">
+    <div class="card">
+      <div class="work-title">
+        <svg viewBox="0 0 24 24" fill="white">
           <rect x="4" y="4" width="16" height="16"/>
         </svg>
         <h3>XR Accessibility</h3>
-        <p>VR systems designed for diverse abilities, including flexible locomotion and inclusive interaction.</p>
       </div>
+      <p>Inclusive VR systems for diverse abilities and interaction styles.</p>
+    </div>
 
-      <div class="card">
-        <svg class="icon" viewBox="0 0 24 24" fill="white">
+    <div class="card">
+      <div class="work-title">
+        <svg viewBox="0 0 24 24" fill="white">
           <polygon points="12,2 22,20 2,20"/>
         </svg>
         <h3>Immersive Learning</h3>
-        <p>AR/VR applications for experiential education, including learning tools and virtual labs.</p>
       </div>
-
+      <p>AR/VR tools for experiential education and virtual labs.</p>
     </div>
-  </section>
 
-<!-- PHILOSOPHY -->
-<section class="fade">
-  <h2>Thinking</h2>
-  <p>“Intelligence is not just in the mind—it emerges from interaction.”</p>
-  <p>“Environments shape how we think more than we realize.”</p>
-  <p>“Accessibility is not a feature, it is a property of the system.”</p>
-  <p>“Reality is not fixed—it can be designed.”</p>
+  </div>
 </section>
+
 
 <!-- PROOF -->
 <section class="fade">
   <h2>Proof of Work</h2>
   <p>
-    • VR locomotion accessibility system (<a href="https://equalentry.com/virtual-reality-accessibility-locomotion-unity/" target="_blank">View</a>)<br>
+    • <a href="https://equalentry.com/virtual-reality-accessibility-locomotion-unity/" target="_blank">VR locomotion accessibility system</a><br>
     • AR learning applications (Learn-O-Little)<br>
-    • India’s first AR coloring book (<a href="https://youtu.be/4x-EXMu2CRU?si=BN4BdR-bXZKxlFPW" target="_blank">Watch</a>)<br>
+    • <a href="https://youtu.be/4x-EXMu2CRU?si=BN4BdR-bXZKxlFPW" target="_blank">AR Coloring Book</a><br>
     • 30+ talks across schools and institutions<br>
-    • MIT Reality Hack participant<br>
+    • MIT Reality Hack<br>
     • XR Bootcamp (Unity + Meta)<br>
-    • PhD in AI-integrated XR for education
+    • PhD in AI-integrated XR
   </p>
 </section>
 
@@ -210,7 +254,7 @@ a:hover {
   <h2>Profiles</h2>
   <p>
     <a href="https://scholar.google.com/citations?hl=en&user=eJRsA5kAAAAJ" target="_blank">Google Scholar</a><br>
-    <a href="https://www.scopus.com/authid/detail.uri?authorId=57226023317" target="_blank">Scopus Profile</a><br>
+    <a href="https://www.scopus.com/authid/detail.uri?authorId=57226023317" target="_blank">Scopus</a><br>
     <a href="https://www.linkedin.com/in/shivam-sharma9/" target="_blank">LinkedIn</a>
   </p>
 </section>
@@ -219,11 +263,10 @@ a:hover {
 <section class="fade">
   <h2>Contact</h2>
   <p>
-    Email: <a href="mailto:shivam.sharma9619@gmail.com">shivam.sharma9619@gmail.com</a>
+    <a href="mailto:shivam.sharma9619@gmail.com">shivam.sharma9619@gmail.com</a>
   </p>
 </section>
 
-<!-- FOOTER -->
 <div class="footer">
   © 2026 Shivam Sharma
 </div>
@@ -232,17 +275,19 @@ a:hover {
 
 <script>
 // Scroll animation
-const elements = document.querySelectorAll('.fade');
-
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
+    if (entry.isIntersecting) entry.target.classList.add('show');
   });
 });
+document.querySelectorAll('.fade').forEach(el => observer.observe(el));
 
-elements.forEach(el => observer.observe(el));
+// Cursor glow
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
 </script>
 
 </body>
