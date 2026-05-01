@@ -1,163 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shivam Sharma | Adaptive Reality</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #000;
-      color: #fff;
-      line-height: 1.6;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-    }
-    h2 {
-      margin-top: 60px;
-      font-size: 1.8rem;
-    }
-    p {
-      color: #bbb;
-    }
-    .hero p {
-      text-align: center;
-      max-width: 600px;
-      margin: 20px auto;
-    }
-    .section {
-      margin-top: 40px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    .card {
-      background: #111;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .philosophy p {
-      font-style: italic;
-      margin-bottom: 10px;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 60px;
-      color: #666;
-      font-size: 0.9rem;
-    }
-    a {
-      color: #fff;
-      text-decoration: underline;
-    }
-    @media(min-width: 768px) {
-      .grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivam Sharma | Adaptive Reality</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+/* Layout */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* Typography */
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+h2 {
+  margin-top: 60px;
+  font-size: 1.8rem;
+}
+
+p {
+  color: #bbb;
+}
+
+/* Hero Glow Animation */
+.hero {
+  text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(0,150,255,0.3), transparent 70%);
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: pulse 6s infinite ease-in-out;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.6; transform: translateX(-50%) scale(1.2); }
+}
+
+/* Cards */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.card {
+  background: #111;
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, background 0.3s;
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  background: #151515;
+}
+
+/* Tilt effect */
+.card:hover {
+  transform: rotateX(5deg) rotateY(5deg) scale(1.02);
+}
+
+/* Fade animation */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Links */
+a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid #555;
+}
+
+a:hover {
+  border-bottom: 1px solid #fff;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  margin-top: 60px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media(min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+</style>
 </head>
+
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <!-- HERO -->
-    <section class="hero">
-      <h1>What if reality could adapt to you?</h1>
-      <p>
-        I build intelligent environments that evolve with human cognition, perception, and ability.
-      </p>
-    </section>
+<!-- HERO -->
+<section class="hero fade">
+  <h1>What if reality could adapt to you?</h1>
+  <p>
+    I build intelligent environments that evolve with human cognition, perception, and ability.
+  </p>
+</section>
 
-    <!-- ABOUT -->
-    <section class="section">
-      <h2>About</h2>
-      <p>
-        I’m Shivam Sharma, an XR and AI researcher based in India. My work explores how immersive environments shape human thinking and behavior.
-        <br><br>
-        Through building VR simulations, AR learning tools, and accessibility systems, I’ve realized that people don’t struggle with concepts—they struggle when environments don’t adapt to them.
-        <br><br>
-        I’m now exploring Adaptive Reality: environments that evolve in real time based on how we think, move, and perceive.
-      </p>
-    </section>
+<!-- ABOUT -->
+<section class="fade">
+  <h2>About</h2>
+  <p>
+    I’m Shivam Sharma, an XR and AI researcher based in India. My work explores how immersive environments shape human thinking and behavior.
+    <br><br>
+    Through VR simulations, AR learning tools, and accessibility systems, I’ve realized that people don’t struggle with concepts—they struggle when environments don’t adapt to them.
+    <br><br>
+    I’m now exploring Adaptive Reality: environments that evolve in real time based on how we think, move, and perceive.
+  </p>
+</section>
 
-    <!-- WORK -->
-    <section class="section">
-      <h2>Core Work</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Adaptive Reality</h3>
-          <p>Environments that dynamically adapt to cognition and interaction, creating personalized realities.</p>
-        </div>
-        <div class="card">
-          <h3>XR Accessibility</h3>
-          <p>VR locomotion systems and inclusive design approaches for diverse physical and sensory abilities.</p>
-        </div>
-        <div class="card">
-          <h3>Immersive Learning</h3>
-          <p>AR/VR applications for experiential education, including interactive learning tools and virtual labs.</p>
-        </div>
+<!-- WORK -->
+  <section>
+    <h2>Core Work</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="white">
+          <circle cx="12" cy="12" r="10"/>
+        </svg>
+        <h3>Adaptive Reality</h3>
+        <p>Environments that dynamically adapt to cognition and interaction, creating personalized realities.</p>
       </div>
-    </section>
 
-    <!-- PHILOSOPHY -->
-    <section class="section philosophy">
-      <h2>Thinking</h2>
-      <p>“Intelligence is not just in the mind—it emerges from interaction.”</p>
-      <p>“Environments shape how we think more than we realize.”</p>
-      <p>“Accessibility is not a feature, it is a property of the system.”</p>
-      <p>“Reality is not fixed—it can be designed.”</p>
-    </section>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="white">
+          <rect x="4" y="4" width="16" height="16"/>
+        </svg>
+        <h3>XR Accessibility</h3>
+        <p>VR systems designed for diverse abilities, including flexible locomotion and inclusive interaction.</p>
+      </div>
 
-    <!-- PROOF -->
-    <section class="section">
-      <h2>Proof of Work</h2>
-      <p>
-        • VR locomotion accessibility system (<a href="https://equalentry.com/virtual-reality-accessibility-locomotion-unity/" target="_blank">View</a>)<br>
-        • AR learning applications (Learn-O-Little)<br>
-        • India’s first AR coloring book<br>
-        • 30+ talks across schools and institutions<br>
-        • MIT Reality Hack participant<br>
-        • XR Bootcamp (Unity + Meta)<br>
-        • PhD in AI-integrated XR for education
-      </p>
-    </section>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="white">
+          <polygon points="12,2 22,20 2,20"/>
+        </svg>
+        <h3>Immersive Learning</h3>
+        <p>AR/VR applications for experiential education, including learning tools and virtual labs.</p>
+      </div>
 
-    <!-- LINKS -->
-    <section class="section">
-      <h2>Links</h2>
-      <p>
-        <a href="https://scholar.google.com/citations?hl=en&user=eJRsA5kAAAAJ" target="_blank">Google Scholar</a><br>
-        <a href="https://www.scopus.com/authid/detail.uri?authorId=57226023317" target="_blank">Scopus Profile</a>
-      </p>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section">
-      <h2>Contact</h2>
-      <p>
-        Interested in adaptive environments or immersive intelligence?<br><br>
-        Email: your@email.com
-      </p>
-    </section>
-
-    <!-- FOOTER -->
-    <div class="footer">
-      © 2026 Shivam Sharma
     </div>
+  </section>
 
-  </div>
+<!-- PHILOSOPHY -->
+<section class="fade">
+  <h2>Thinking</h2>
+  <p>“Intelligence is not just in the mind—it emerges from interaction.”</p>
+  <p>“Environments shape how we think more than we realize.”</p>
+  <p>“Accessibility is not a feature, it is a property of the system.”</p>
+  <p>“Reality is not fixed—it can be designed.”</p>
+</section>
+
+<!-- PROOF -->
+<section class="fade">
+  <h2>Proof of Work</h2>
+  <p>
+    • VR locomotion accessibility system (<a href="https://equalentry.com/virtual-reality-accessibility-locomotion-unity/" target="_blank">View</a>)<br>
+    • AR learning applications (Learn-O-Little)<br>
+    • India’s first AR coloring book (<a href="https://youtu.be/4x-EXMu2CRU?si=BN4BdR-bXZKxlFPW" target="_blank">Watch</a>)<br>
+    • 30+ talks across schools and institutions<br>
+    • MIT Reality Hack participant<br>
+    • XR Bootcamp (Unity + Meta)<br>
+    • PhD in AI-integrated XR for education
+  </p>
+</section>
+
+<!-- LINKS -->
+<section class="fade">
+  <h2>Profiles</h2>
+  <p>
+    <a href="https://scholar.google.com/citations?hl=en&user=eJRsA5kAAAAJ" target="_blank">Google Scholar</a><br>
+    <a href="https://www.scopus.com/authid/detail.uri?authorId=57226023317" target="_blank">Scopus Profile</a><br>
+    <a href="https://www.linkedin.com/in/shivam-sharma9/" target="_blank">LinkedIn</a>
+  </p>
+</section>
+
+<!-- CONTACT -->
+<section class="fade">
+  <h2>Contact</h2>
+  <p>
+    Email: <a href="mailto:shivam.sharma9619@gmail.com">shivam.sharma9619@gmail.com</a>
+  </p>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  © 2026 Shivam Sharma
+</div>
+
+</div>
+
+<script>
+// Scroll animation
+const elements = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+elements.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
